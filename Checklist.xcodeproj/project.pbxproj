@@ -16,6 +16,7 @@
 		D89298F61B4D134E0037B00B /* ItemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89298F51B4D134E0037B00B /* ItemsTableViewController.swift */; };
 		D89298FA1B4D43310037B00B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89298F91B4D43310037B00B /* Item.swift */; };
 		D89298FC1B4D5AD80037B00B /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89298FB1B4D5AD80037B00B /* CoreDataTableViewController.swift */; };
+		D89298FE1B4D804C0037B00B /* SortableMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89298FD1B4D804C0037B00B /* SortableMO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		D89298F51B4D134E0037B00B /* ItemsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsTableViewController.swift; sourceTree = "<group>"; };
 		D89298F91B4D43310037B00B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		D89298FB1B4D5AD80037B00B /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		D89298FD1B4D804C0037B00B /* SortableMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortableMO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				D89298DC1B4C22CE0037B00B /* Images.xcassets */,
 				D89298DE1B4C22CE0037B00B /* LaunchScreen.xib */,
 				D89298F91B4D43310037B00B /* Item.swift */,
+				D89298FD1B4D804C0037B00B /* SortableMO.swift */,
 				D89298D41B4C22CE0037B00B /* Checklist.xcdatamodeld */,
 				D89298D01B4C22CE0037B00B /* Supporting Files */,
 			);
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D89298FA1B4D43310037B00B /* Item.swift in Sources */,
+				D89298FE1B4D804C0037B00B /* SortableMO.swift in Sources */,
 				D89298D61B4C22CE0037B00B /* Checklist.xcdatamodeld in Sources */,
 				D89298D31B4C22CE0037B00B /* AppDelegate.swift in Sources */,
 				D89298F61B4D134E0037B00B /* ItemsTableViewController.swift in Sources */,
