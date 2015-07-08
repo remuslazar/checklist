@@ -35,7 +35,7 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
         super.viewDidLoad()
         if request != nil {
             controller.delegate = self
-            controller.performFetch(nil)            
+            controller.performFetch(nil)
         }
     }
     
