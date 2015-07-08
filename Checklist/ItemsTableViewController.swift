@@ -14,12 +14,7 @@ class ItemsTableViewController: CoreDataTableViewController {
     // MARK: - Outlets
     @IBAction func addItem(sender: AnyObject) {
         let item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: controller.managedObjectContext) as! Item
-        
-        let total = controller.managedObjectContext.countForFetchRequest(NSFetchRequest(entityName: "Item"), error: nil)
-        
-        item.title = "My Item # \(total)"
-        item.sorting = total
-        
+        item.title = "New Item"
         controller.managedObjectContext.save(nil)
     }
     @IBOutlet weak var editButton: UIBarButtonItem!
