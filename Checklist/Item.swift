@@ -25,11 +25,11 @@ class Item: NSManagedObject {
     // helper method to call a aggr function like max, min etc.
     private func aggr(function: String, forKeyPath keyPath: String, attributeType: NSAttributeType) -> AnyObject? {
         let description = NSExpressionDescription()
-        description.name = "myAggr"
+        description.name = "a"
         description.expression = NSExpression(forFunction: function, arguments: [NSExpression(forKeyPath: keyPath)])
         description.expressionResultType = attributeType
 
-        let request = NSFetchRequest(entityName: "Item")
+        let request = NSFetchRequest(entityName: entity.name!)
         request.resultType = .DictionaryResultType
         request.propertiesToFetch = [description]
         
