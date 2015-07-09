@@ -18,15 +18,6 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
         return NSFetchedResultsController(fetchRequest: self.request, managedObjectContext: appDelegate.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
         }()
 
-    var inEditMode = false {
-        didSet {
-            tableView.editing = inEditMode
-            // change the edit/done button accordingly
-            let newButton = UIBarButtonItem(barButtonSystemItem: inEditMode ? .Done : .Edit, target: self, action: "editButton:")
-            navigationItem.leftBarButtonItem = newButton
-        }
-    }
-
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         // implemented by subclass
     }
@@ -49,7 +40,7 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            if let item = controller.objectAtIndexPath(indexPath) as? Item {
+            if let item = controller.objectAtIndexPath(indexPath) as? NSManagedObject {
                 controller.managedObjectContext.deleteObject(item)
                 controller.managedObjectContext.save(nil)
             }
@@ -59,14 +50,14 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     }
 
     // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        if let item1 = controller.objectAtIndexPath(fromIndexPath) as? Item,
-            let item2 = controller.objectAtIndexPath(toIndexPath) as? Item {
-                let tmp = item2.sorting
-                item2.sorting = item1.sorting
-                item1.sorting = tmp
-        }
-    }
+//    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+//        if let item1 = controller.objectAtIndexPath(fromIndexPath) as? Item,
+//            let item2 = controller.objectAtIndexPath(toIndexPath) as? Item {
+//                let tmp = item2.sorting
+//                item2.sorting = item1.sorting
+//                item1.sorting = tmp
+//        }
+//    }
 
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {

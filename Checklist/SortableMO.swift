@@ -15,6 +15,7 @@ class SortableMO: NSManagedObject {
     @NSManaged var timestamp: NSDate
     
     override func awakeFromInsert() {
+        super.awakeFromInsert()
         timestamp = NSDate()
         if let maxSorting = aggr("max:", forKeyPath: "sorting", attributeType: .Integer32AttributeType) as? Int {
             sorting = maxSorting + 1

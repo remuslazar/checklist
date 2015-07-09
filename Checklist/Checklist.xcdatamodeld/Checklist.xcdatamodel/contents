@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Item" representedClassName="Checklist.Item" syncable="YES">
-        <attribute name="sorting" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="purchased" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="quantity" attributeType="Float" defaultValueString="1" syncable="YES"/>
+        <attribute name="sorting" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="timestamp" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="List" inverseName="items" inverseEntity="List" syncable="YES"/>
+    </entity>
+    <entity name="List" representedClassName="Checklist.List" syncable="YES">
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="list" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-7956" positionY="-4617" width="128" height="88"/>
+        <element name="Item" positionX="-7434" positionY="-4347" width="128" height="133"/>
+        <element name="List" positionX="-7947" positionY="-4572" width="128" height="88"/>
     </elements>
 </model>

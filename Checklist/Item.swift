@@ -2,7 +2,7 @@
 //  Item.swift
 //  Checklist
 //
-//  Created by Remus Lazar on 08.07.15.
+//  Created by Remus Lazar on 09.07.15.
 //  Copyright (c) 2015 Remus Lazar. All rights reserved.
 //
 
@@ -12,5 +12,16 @@ import CoreData
 class Item: SortableMO {
 
     @NSManaged var title: String
+    @NSManaged var quantity: NSNumber
+    @NSManaged var purchased: NSNumber
+    @NSManaged var list: List
     
+    var isPurchased: Bool { return purchased.boolValue }
+
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        quantity = 1
+    }
+    
+
 }

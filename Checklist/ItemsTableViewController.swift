@@ -11,32 +11,32 @@ import CoreData
 
 class ItemsTableViewController: CoreDataTableViewController {
 
-    // MARK: - Outlets
-    @IBAction func addItem(sender: AnyObject) {
-        let item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: controller.managedObjectContext) as! Item
-        item.title = "New Item"
-        controller.managedObjectContext.save(nil)
-    }
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBAction func editButton(sender: UIBarButtonItem) { inEditMode = !inEditMode }
+    // MARK: - public API
+    
+    var list: List! // selected list from the parent VC
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         request = NSFetchRequest(entityName: "Item")
-        request.sortDescriptors = [NSSortDescriptor(key: "sorting", ascending: false)]
+        request.predicate = NSPredicate(format: "list = %@", list)
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "purchased", ascending: true),
+            NSSortDescriptor(key: "sorting", ascending: false)
+        ]
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
     }
 
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let item = controller.objectAtIndexPath(indexPath) as? Item {
-            cell.textLabel?.text = item.title
-            cell.detailTextLabel?.text = "\(item.timestamp)"
+            cell.detailTextLabel?.text = NSNumberFormatter().stringFromNumber(item.quantity)
+            cell.textLabel?.attributedText = NSAttributedString(string: item.title, attributes: [
+                NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
+                NSStrikethroughStyleAttributeName: item.purchased,
+                NSForegroundColorAttributeName: item.isPurchased ? UIColor.lightGrayColor() : UIColor.darkTextColor()
+                ])
         }
     }
 
@@ -47,14 +47,30 @@ class ItemsTableViewController: CoreDataTableViewController {
         return cell
     }
     
-    /*
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if !tableView.editing {
+            if let item = controller.objectAtIndexPath(indexPath) as? Item {
+                item.purchased = !item.isPurchased
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if let editItemVC = segue.destinationViewController as? NewItemViewController {
+            if let cell = sender as? UITableViewCell,
+                let indexPath = tableView.indexPathForCell(cell),
+                let item = controller.objectAtIndexPath(indexPath) as? Item {
+                    editItemVC.title = "Edit Item"
+                    editItemVC.item = item
+            }
+            editItemVC.list = list
+        }
     }
-    */
 
 }
