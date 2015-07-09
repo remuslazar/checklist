@@ -63,6 +63,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Items" id="km1-Bk-ZNz"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="h8C-a3-2xW">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="uF6-bI-NiA" eventType="valueChanged" id="swD-XH-RlG"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2829" y="461"/>

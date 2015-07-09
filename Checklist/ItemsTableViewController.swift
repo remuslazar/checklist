@@ -15,19 +15,27 @@ class ItemsTableViewController: UITableViewController {
     
     var list: List! // selected list from the parent VC
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    // MARK: - View Lifecycle
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        title = list.title
     }
 
+    // MARK: - Outlets
+    
+    @IBAction func refresh(sender: UIRefreshControl) {
+        tableView.reloadData()
+        sender.endRefreshing()
+    }
+    
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let item = list.items[indexPath.row] as? Item {
             cell.detailTextLabel?.text = NSNumberFormatter().stringFromNumber(item.quantity)
@@ -75,7 +83,8 @@ class ItemsTableViewController: UITableViewController {
         if !tableView.editing {
             if let item = list.items[indexPath.row] as? Item {
                 item.purchased = !item.purchased
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
         }
     }

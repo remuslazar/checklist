@@ -66,6 +66,7 @@ class NewItemViewController: UIViewController {
             itemQuantity = Double(item.quantity)
         }
         updateUI()
+        descriptionInputField.becomeFirstResponder()
     }
     
 }

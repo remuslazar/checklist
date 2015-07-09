@@ -77,7 +77,6 @@ class ListsTableViewController: CoreDataTableViewController {
             let indexPath = tableView.indexPathForCell(cell),
             let list = controller.objectAtIndexPath(indexPath) as? List {
                 itemsViewController.list = list
-                
         }
     }
 
