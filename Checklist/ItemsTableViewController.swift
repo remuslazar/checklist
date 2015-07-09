@@ -21,12 +21,15 @@ class ItemsTableViewController: CoreDataTableViewController {
         request.predicate = NSPredicate(format: "list = %@", list)
         request.sortDescriptors = [
             NSSortDescriptor(key: "purchased", ascending: true),
-            NSSortDescriptor(key: "sorting", ascending: false)
         ]
         super.viewDidLoad()
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        for item in list.items {
+            println("item: \(item.title)")
+        }
     }
 
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {

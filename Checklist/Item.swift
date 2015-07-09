@@ -9,18 +9,19 @@
 import Foundation
 import CoreData
 
-class Item: SortableMO {
+class Item: NSManagedObject {
 
     @NSManaged var title: String
     @NSManaged var quantity: NSNumber
     @NSManaged var purchased: NSNumber
     @NSManaged var list: List
+    @NSManaged var timestamp: NSDate
     
     var isPurchased: Bool { return purchased.boolValue }
 
     override func awakeFromInsert() {
         super.awakeFromInsert()
-        quantity = 1
+        timestamp = NSDate()
     }
     
 
