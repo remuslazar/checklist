@@ -13,15 +13,10 @@ class ItemsTableViewController: UITableViewController {
 
     // MARK: - public API
     
-    var list: List! { // selected list from the parent VC
-        didSet { list.addObserver(self, forKeyPath: "items", options: nil, context: nil) }
-    }
+    var list: List! // selected list from the parent VC
 
-    deinit {
-        if list != nil { list.removeObserver(self, forKeyPath: "items") }
-    }
-    
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         tableView.reloadData()
     }
     
@@ -44,13 +39,34 @@ class ItemsTableViewController: UITableViewController {
         }
     }
 
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        if let item = list.items[fromIndexPath.row] as? Item {
+            list.mutableOrderedSetValueForKey("items").moveObjectsAtIndexes(
+                NSIndexSet(index: fromIndexPath.row),
+                toIndex: toIndexPath.row
+            )
+        }
+    }
+
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Delete the row from the data source
+            if let item = list.items[indexPath.row] as? Item {
+                item.managedObjectContext?.deleteObject(item)
+                item.managedObjectContext?.save(nil)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
+        }
+    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.items.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! UITableViewCell
-        
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -60,7 +76,6 @@ class ItemsTableViewController: UITableViewController {
             if let item = list.items[indexPath.row] as? Item {
                 item.purchased = !item.purchased
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//                tableView.reloadData()
             }
         }
     }

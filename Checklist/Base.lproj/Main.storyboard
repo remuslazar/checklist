@@ -8,11 +8,30 @@
         <!--Items-->
         <scene sceneID="M1u-jm-doC">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="khZ-TR-hQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Wig-D4-DsE">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem systemItem="add" id="PGS-Lh-EHS"/>
+                    </items>
+                </toolbar>
                 <tableViewController id="uF6-bI-NiA" customClass="ItemsTableViewController" customModule="Checklist" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Um7-Oy-RUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Um7-Oy-RUJ">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ek5-EN-f8H">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem systemItem="add" id="Edd-jc-3uC">
+                                    <connections>
+                                        <segue destination="Zlg-QC-ArZ" kind="show" id="BDr-MP-50Z"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" showsReorderControl="YES" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ItemCell" textLabel="2Ez-kY-Gct" detailTextLabel="5Jz-9h-MSi" style="IBUITableViewCellStyleValue1" id="ilN-p7-0Zi">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -43,18 +62,10 @@
                             <outlet property="delegate" destination="uF6-bI-NiA" id="iER-2s-GBo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Items" id="km1-Bk-ZNz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TYi-hb-8jC">
-                            <connections>
-                                <action selector="addItem:" destination="uF6-bI-NiA" id="sNm-4G-tnL"/>
-                                <segue destination="Zlg-QC-ArZ" kind="show" id="CTn-rN-kkC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Items" id="km1-Bk-ZNz"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="khZ-TR-hQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2817" y="461"/>
+            <point key="canvasLocation" x="2829" y="461"/>
         </scene>
         <!--Lists-->
         <scene sceneID="KTH-2d-bdI">
@@ -184,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9M-qU-FnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3710" y="461"/>
+            <point key="canvasLocation" x="3580" y="191"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z2w-70-I06">
@@ -206,6 +217,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CTn-rN-kkC"/>
+        <segue reference="Kk1-W9-E89"/>
     </inferredMetricsTieBreakers>
 </document>
