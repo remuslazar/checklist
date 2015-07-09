@@ -27,14 +27,14 @@ class NewItemViewController: UIViewController {
 
     private func save() {
         if item == nil { // insert a new record
-            if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate,
-                let moc = appDelegate.managedObjectContext {
-                    item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: moc) as! Item
+            if let moc = list.managedObjectContext {
+                item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: moc) as! Item
+                let items = list.mutableOrderedSetValueForKey("items")
+                items.insertObject(item, atIndex: 0)
             }
         }
         item.title = itemDescription
         item.quantity = Float(itemQuantity)
-        item.list = list
         item.managedObjectContext?.save(nil)
     }
     

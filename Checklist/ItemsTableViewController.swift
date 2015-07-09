@@ -9,40 +9,45 @@
 import UIKit
 import CoreData
 
-class ItemsTableViewController: CoreDataTableViewController {
+class ItemsTableViewController: UITableViewController {
 
     // MARK: - public API
     
-    var list: List! // selected list from the parent VC
+    var list: List! { // selected list from the parent VC
+        didSet { list.addObserver(self, forKeyPath: "items", options: nil, context: nil) }
+    }
+
+    deinit {
+        if list != nil { list.removeObserver(self, forKeyPath: "items") }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        tableView.reloadData()
+    }
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
-        request = NSFetchRequest(entityName: "Item")
-        request.predicate = NSPredicate(format: "list = %@", list)
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "purchased", ascending: true),
-        ]
         super.viewDidLoad()
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-        for item in list.items {
-            println("item: \(item.title)")
-        }
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let item = controller.objectAtIndexPath(indexPath) as? Item {
+    private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let item = list.items[indexPath.row] as? Item {
             cell.detailTextLabel?.text = NSNumberFormatter().stringFromNumber(item.quantity)
             cell.textLabel?.attributedText = NSAttributedString(string: item.title, attributes: [
                 NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
                 NSStrikethroughStyleAttributeName: item.purchased,
-                NSForegroundColorAttributeName: item.isPurchased ? UIColor.lightGrayColor() : UIColor.darkTextColor()
+                NSForegroundColorAttributeName: item.purchased ? UIColor.lightGrayColor() : UIColor.darkTextColor()
                 ])
         }
     }
 
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.items.count
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! UITableViewCell
         
@@ -52,9 +57,10 @@ class ItemsTableViewController: CoreDataTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !tableView.editing {
-            if let item = controller.objectAtIndexPath(indexPath) as? Item {
-                item.purchased = !item.isPurchased
+            if let item = list.items[indexPath.row] as? Item {
+                item.purchased = !item.purchased
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//                tableView.reloadData()
             }
         }
     }
@@ -68,7 +74,7 @@ class ItemsTableViewController: CoreDataTableViewController {
         if let editItemVC = segue.destinationViewController as? NewItemViewController {
             if let cell = sender as? UITableViewCell,
                 let indexPath = tableView.indexPathForCell(cell),
-                let item = controller.objectAtIndexPath(indexPath) as? Item {
+                let item = list.items[indexPath.row] as? Item {
                     editItemVC.title = "Edit Item"
                     editItemVC.item = item
             }
