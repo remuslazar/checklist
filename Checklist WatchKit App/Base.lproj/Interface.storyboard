@@ -12,12 +12,18 @@
                     <items>
                         <table alignment="left" id="N5s-xI-cKF">
                             <items>
-                                <tableRow identifier="Items" id="olN-0z-ozk">
+                                <tableRow identifier="Lists" id="olN-0z-ozk" customClass="MainRowType" customModule="Checklist_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="jjL-Ff-ZPx">
                                         <items>
-                                            <label width="132" height="35" alignment="left" text="Label" id="Kgn-qd-MjB"/>
+                                            <label alignment="left" verticalAlignment="center" text="List Title" id="Kgn-qd-MjB"/>
+                                            <label alignment="right" verticalAlignment="center" text="99" textAlignment="right" id="dPd-rq-UvB"/>
                                         </items>
                                     </group>
+                                    <connections>
+                                        <outlet property="itemCountLabel" destination="dPd-rq-UvB" id="Ebj-zf-h2z"/>
+                                        <outlet property="rowDescription" destination="Kgn-qd-MjB" id="okO-q6-ecw"/>
+                                        <segue destination="bU3-uA-F01" kind="push" identifier="ShowList" id="LBd-go-kaT"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
@@ -28,6 +34,35 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="346"/>
+        </scene>
+        <!--Items Interface Controller-->
+        <scene sceneID="sGy-h8-5wg">
+            <objects>
+                <controller id="bU3-uA-F01" customClass="ItemsInterfaceController" customModule="Checklist_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="tc5-LN-TDl">
+                            <items>
+                                <tableRow identifier="Items" id="JuX-AB-9Et" customClass="ItemRowType" customModule="Checklist_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="DMb-eI-GY5">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" id="cJ5-O9-2f4"/>
+                                            <label alignment="right" verticalAlignment="center" text="Label" id="Ohh-D8-ERh"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="quantityLabel" destination="Ohh-D8-ERh" id="xyX-jA-f32"/>
+                                        <outlet property="titleLabel" destination="cJ5-O9-2f4" id="2ah-C4-ixd"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="tc5-LN-TDl" id="2rq-7V-SIi"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="473" y="346"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

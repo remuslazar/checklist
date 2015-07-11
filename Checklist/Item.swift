@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(Item)
 class Item: NSManagedObject {
 
     @NSManaged var title: String
