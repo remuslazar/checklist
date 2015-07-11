@@ -18,17 +18,27 @@ public class DataAccess: NSObject {
         return urls[urls.count-1] as! NSURL
         }()
     
+    lazy var sharedDocumentsDirectory: NSURL = {
+        if let containerPath = NSFileManager().containerURLForSecurityApplicationGroupIdentifier("group.checklist.Documents")?.path {
+            println("container path: \(containerPath)")
+            return NSURL.fileURLWithPath(containerPath)!
+        }
+        abort()
+    }()
+    
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("Checklist", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
         }()
     
+    
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+        
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Checklist.sqlite")
+        let url = self.sharedDocumentsDirectory.URLByAppendingPathComponent("Checklist.sqlite")
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {

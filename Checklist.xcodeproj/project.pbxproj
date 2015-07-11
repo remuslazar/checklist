@@ -123,6 +123,7 @@
 		D86F57851B51138100AD7A55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D86F57861B51138100AD7A55 /* ChecklistKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistKitTests.swift; sourceTree = "<group>"; };
 		D86F57931B5113E200AD7A55 /* DataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
+		D86F57951B5118CF00AD7A55 /* Checklist WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Checklist WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		D89298CD1B4C22CE0037B00B /* Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89298D11B4C22CE0037B00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D89298D21B4C22CE0037B00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		D86F574B1B4F28C700AD7A55 /* Checklist WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D86F57951B5118CF00AD7A55 /* Checklist WatchKit Extension.entitlements */,
 				D86F574F1B4F28C700AD7A55 /* InterfaceController.swift */,
 				D86F57511B4F28C700AD7A55 /* NotificationController.swift */,
 				D86F57531B4F28C700AD7A55 /* Images.xcassets */,
@@ -460,6 +462,12 @@
 				TargetAttributes = {
 					D86F57491B4F28C700AD7A55 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5MR244XF46;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					D86F57561B4F28C700AD7A55 = {
 						CreatedOnToolsVersion = 6.4;
@@ -678,6 +686,9 @@
 		D86F57661B4F28C700AD7A55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Checklist WatchKit Extension/Checklist WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -685,6 +696,7 @@
 				INFOPLIST_FILE = "Checklist WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -692,9 +704,13 @@
 		D86F57671B4F28C700AD7A55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Checklist WatchKit Extension/Checklist WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Checklist WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
