@@ -83,6 +83,7 @@ class ItemsTableViewController: UITableViewController {
         if !tableView.editing {
             if let item = list.items[indexPath.row] as? Item {
                 item.purchased = !item.purchased
+                item.managedObjectContext?.save(nil)
 //                tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
