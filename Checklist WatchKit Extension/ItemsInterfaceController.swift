@@ -41,7 +41,7 @@ class ItemsInterfaceController: WKInterfaceController {
             cell.titleLabel.setAttributedText(NSAttributedString(string: item.title, attributes: [
                 NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
                 NSStrikethroughStyleAttributeName: item.purchased,
-                NSForegroundColorAttributeName: item.purchased ? UIColor.darkGrayColor() : UIColor.lightTextColor()
+                NSForegroundColorAttributeName: item.purchased ? UIColor.darkGrayColor() : UIColor.whiteColor()
                 ]))
         }
     }
