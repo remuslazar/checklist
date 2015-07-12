@@ -11,6 +11,11 @@ import CoreData
 
 public class DataAccess: NSObject {
     
+    public class var sharedInstance: DataAccess {
+        struct Singleton { static let instance = DataAccess() }
+        return Singleton.instance
+    }
+    
     // MARK: - Core Data stack
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "lazar.info.Checklist" in the application's documents Application Support directory.
@@ -20,7 +25,7 @@ public class DataAccess: NSObject {
     
     lazy var sharedDocumentsDirectory: NSURL = {
         if let containerPath = NSFileManager().containerURLForSecurityApplicationGroupIdentifier("group.checklist.Documents")?.path {
-//            println("container path: \(containerPath)")
+            println("container path: \(containerPath)")
             return NSURL.fileURLWithPath(containerPath)!
         }
         abort()
@@ -68,5 +73,4 @@ public class DataAccess: NSObject {
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
         }()
-    
 }

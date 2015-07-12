@@ -28,6 +28,15 @@
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="wbS-eq-Ze0">
+                        <items>
+                            <menuItem title="Reload Data" icon="repeat" id="fFu-eY-4OC">
+                                <connections>
+                                    <action selector="reloadData" destination="AgC-eL-Hgc" id="hWc-Ow-54z"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="table" destination="N5s-xI-cKF" id="ufB-Cy-X2v"/>
                     </connections>

@@ -25,11 +25,16 @@ class AddNewItemInterfaceController: WKInterfaceController {
     @IBOutlet weak var newItemTitleLAbel: WKInterfaceLabel!
     @IBAction func stepper(value: Float) { quantity = value }
     
+    private var suggestions: [String] {
+        return Checklist().favItems(forList: list).map { $0.title }
+    }
+    
     private func getItemTitle() {
-        let suggestions = [ "Beer", "Milk", "Bread"]
         presentTextInputControllerWithSuggestions(suggestions, allowedInputMode: .Plain) { (results) -> Void in
-            if let input = results.first as? String {
+            if let input = results?.first as? String {
                 self.itemTitle = input
+            } else {
+                self.dismissController()
             }
         }
     }
@@ -51,14 +56,8 @@ class AddNewItemInterfaceController: WKInterfaceController {
 //    }
     
     @IBAction func add() {
-        if let newItem = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: self.list.managedObjectContext!) as? Item {
-            newItem.title = itemTitle
-            newItem.quantity = quantity
-            self.list.mutableOrderedSetValueForKey("items").insertObject(newItem, atIndex: self.list.items.count)
-            self.list.managedObjectContext?.save(nil)
-            self.dismissController()
-        }
-        
+        Checklist().addItem(title: itemTitle, quantity: Double(quantity), toList: list)
+        self.dismissController()
     }
     
     @IBAction func editTitle() {

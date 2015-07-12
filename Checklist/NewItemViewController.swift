@@ -26,16 +26,12 @@ class NewItemViewController: UIViewController {
     }
 
     private func save() {
+        let checklist = Checklist()
         if item == nil { // insert a new record
-            if let moc = list.managedObjectContext {
-                item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: moc) as! Item
-                let items = list.mutableOrderedSetValueForKey("items")
-                items.insertObject(item, atIndex: 0)
-            }
+            checklist.addItem(title: itemDescription, quantity: itemQuantity, toList: list)
+        } else {
+            checklist.updateItem(item, title: itemDescription, quantity: itemQuantity)
         }
-        item.title = itemDescription
-        item.quantity = Float(itemQuantity)
-        item.managedObjectContext?.save(nil)
     }
     
     // MARK: - Outlets

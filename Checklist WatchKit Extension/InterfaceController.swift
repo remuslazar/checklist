@@ -18,7 +18,7 @@ class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDele
     
     @IBOutlet weak var table: WKInterfaceTable!
     
-    let data = DataAccess()
+    let data = DataAccess.sharedInstance
     
     lazy var controller: NSFetchedResultsController = {
         let request = NSFetchRequest(entityName: "List")
@@ -73,6 +73,12 @@ class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDele
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    @IBAction func reloadData() {
+        data.managedObjectContext?.reset()
+        controller.performFetch(nil)
+        reloadTable()
     }
     
 }
