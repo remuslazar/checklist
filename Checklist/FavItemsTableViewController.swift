@@ -9,13 +9,29 @@
 import UIKit
 import CoreData
 
+protocol FavItemsTableDelegate: class {
+    func favItemsdidSelectitemWithTitle(title: String)
+}
+
 class FavItemsTableViewController: CoreDataTableViewController {
 
+    weak var delegate: FavItemsTableDelegate?
+    
+    // MARK: - public API
+    var list: List? // optionally filter only fav items for the selected list
+    
     override func viewDidLoad() {
         request = NSFetchRequest(entityName: "FavItem")
         request.sortDescriptors = [
             NSSortDescriptor(key: "timestamp", ascending: false)
         ]
+        if let items = list?.items.array as? [Item] {
+            request.predicate = NSCompoundPredicate(
+                type: .NotPredicateType,
+                subpredicates: [
+                    NSPredicate(format: "title IN %@", argumentArray: [items.map { $0.title }])
+                ])
+        }
         super.viewDidLoad()
     }
     
@@ -31,4 +47,9 @@ class FavItemsTableViewController: CoreDataTableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let favItem = controller.objectAtIndexPath(indexPath) as? FavItem {
+            delegate?.favItemsdidSelectitemWithTitle(favItem.title)
+        }
+    }
 }

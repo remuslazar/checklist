@@ -150,7 +150,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B05-6q-Q5T">
                                 <rect key="frame" x="16" y="101" width="568" height="30"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="inputFieldsUpdate" destination="Zlg-QC-ArZ" eventType="editingChanged" id="KjV-KC-HXN"/>
                                 </connections>
@@ -158,7 +158,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-9u-Cxm">
                                 <rect key="frame" x="16" y="168" width="466" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <action selector="inputFieldsUpdate" destination="Zlg-QC-ArZ" eventType="editingChanged" id="CTR-CZ-QpK"/>
                                 </connections>
@@ -172,7 +172,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-5e-cgL">
                                 <rect key="frame" x="0.0" y="206" width="600" height="394"/>
                                 <connections>
-                                    <segue destination="2XJ-ex-nZB" kind="embed" id="PzG-IN-Q8m"/>
+                                    <segue destination="2XJ-ex-nZB" kind="embed" identifier="FavItemsTable" id="PzG-IN-Q8m"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x9M-qU-FnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3580" y="191"/>
+            <point key="canvasLocation" x="3595" y="180"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z2w-70-I06">
@@ -263,7 +263,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mg-gt-OQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3681" y="849"/>
+            <point key="canvasLocation" x="3641" y="842"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NewItemViewController: UIViewController {
+class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFieldDelegate {
 
     // MARK: - public API
     var item: Item!
@@ -26,11 +26,12 @@ class NewItemViewController: UIViewController {
     }
 
     private func save() {
+        let title = itemDescription.stringByTrimmingCharactersInSet(.whitespaceAndNewlineCharacterSet())
         let checklist = Checklist()
         if item == nil { // insert a new record
-            checklist.addItem(title: itemDescription, quantity: itemQuantity, toList: list)
+            checklist.addItem(title: title, quantity: itemQuantity, toList: list)
         } else {
-            checklist.updateItem(item, title: itemDescription, quantity: itemQuantity)
+            checklist.updateItem(item, title: title, quantity: itemQuantity)
         }
     }
     
@@ -48,11 +49,20 @@ class NewItemViewController: UIViewController {
     }
     
     @IBOutlet weak var quantityInputField: UITextField!
-    @IBOutlet weak var descriptionInputField: UITextField!
+    @IBOutlet weak var descriptionInputField: UITextField! {
+        didSet {
+            descriptionInputField.delegate = self
+        }
+    }
     @IBOutlet weak var stepper: UIStepper! { didSet { stepper.value = itemQuantity } }
     @IBAction func stepQuantity(sender: UIStepper) {
         itemQuantity = sender.value
         updateUI()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func viewDidLoad() {
@@ -63,6 +73,20 @@ class NewItemViewController: UIViewController {
         }
         updateUI()
         descriptionInputField.becomeFirstResponder()
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let favItemsTVC = segue.destinationViewController as? FavItemsTableViewController {
+            // embed segue, setup delegate
+            favItemsTVC.delegate = self
+            favItemsTVC.list = list
+        }
+    }
+    
+    func favItemsdidSelectitemWithTitle(title: String) {
+        itemDescription = title
+        updateUI()
+        descriptionInputField.resignFirstResponder()
     }
     
 }
