@@ -15,15 +15,15 @@ class AddNewItemInterfaceController: WKInterfaceController {
     var list: List!
     var itemTitle: String! { didSet { newItemTitleLAbel.setText(itemTitle) } }
     
-    var quantity:Float = 1.0 {
+    var quantity:Float? {
         didSet {
-            quantityLabel.setText(NSNumberFormatter().stringFromNumber(NSNumber(float: quantity)))
+            quantityLabel.setText(quantity != nil && quantity > 0 ? NSNumberFormatter().stringFromNumber(NSNumber(float: quantity!))?.stringByAppendingString("x ") : nil)
         }
     }
     
     @IBOutlet weak var quantityLabel: WKInterfaceLabel!
     @IBOutlet weak var newItemTitleLAbel: WKInterfaceLabel!
-    @IBAction func stepper(value: Float) { quantity = value }
+    @IBAction func stepper(value: Float) { quantity = value > 0 ? value : nil }
     
     private var suggestions: [String] {
         return Checklist().favItems(forList: list).map { $0.title }
@@ -42,6 +42,8 @@ class AddNewItemInterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         self.list = context as! List
+        quantity = nil
+        newItemTitleLAbel.setText(nil)
         if itemTitle == nil { getItemTitle() }
     }
 
@@ -56,7 +58,7 @@ class AddNewItemInterfaceController: WKInterfaceController {
 //    }
     
     @IBAction func add() {
-        Checklist().addItem(title: itemTitle, quantity: Double(quantity), toList: list)
+        Checklist().addItem(title: itemTitle, quantity: quantity != nil ? Double(quantity!) : nil, toList: list)
         self.dismissController()
     }
     

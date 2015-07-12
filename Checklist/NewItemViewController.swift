@@ -18,11 +18,16 @@ class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFiel
     // MARK: - private data
 
     private var itemDescription = ""
-    private var itemQuantity = 1.0 { didSet { stepper?.value = itemQuantity } }
+    private var itemQuantity: Double? {
+        didSet {
+            if itemQuantity == 0 { itemQuantity = nil }
+            stepper?.value = itemQuantity ?? 0
+        }
+    }
     
     private func updateUI() {
         descriptionInputField?.text = itemDescription
-        quantityInputField?.text = NSNumberFormatter().stringFromNumber(NSNumber(double: itemQuantity))
+        quantityInputField?.text = itemQuantity != nil ? NSNumberFormatter().stringFromNumber(NSNumber(double: itemQuantity!)) : nil
     }
 
     private func save() {
@@ -38,7 +43,7 @@ class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFiel
     // MARK: - Outlets
     @IBAction func inputFieldsUpdate() {
         itemDescription = descriptionInputField.text
-        itemQuantity = NSNumberFormatter().numberFromString(quantityInputField.text)?.doubleValue ?? 1.0
+        itemQuantity = NSNumberFormatter().numberFromString(quantityInputField.text)?.doubleValue
         updateUI()
     }
     
@@ -54,7 +59,7 @@ class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFiel
             descriptionInputField.delegate = self
         }
     }
-    @IBOutlet weak var stepper: UIStepper! { didSet { stepper.value = itemQuantity } }
+    @IBOutlet weak var stepper: UIStepper! { didSet { stepper.value = itemQuantity ?? 0 } }
     @IBAction func stepQuantity(sender: UIStepper) {
         itemQuantity = sender.value
         updateUI()
@@ -69,7 +74,7 @@ class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFiel
         super.viewDidLoad()
         if item != nil {
             itemDescription = item.title
-            itemQuantity = Double(item.quantity)
+            itemQuantity = item.quantity != nil ? Double(item.quantity!) : nil
         }
         updateUI()
         descriptionInputField.becomeFirstResponder()

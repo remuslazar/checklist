@@ -30,14 +30,14 @@ class Checklist {
         return []
     }
     
-    func addItem(#title: String, quantity: Double, toList list: List) {
+    func addItem(#title: String, quantity: Double?, toList list: List) {
         let item = NSEntityDescription.insertNewObjectForEntityForName("Item", inManagedObjectContext: moc) as! Item
         let items = list.mutableOrderedSetValueForKey("items")
         items.insertObject(item, atIndex: items.count)
         updateItem(item, title: title, quantity: quantity)
     }
     
-    func updateItem(item: Item, title: String, quantity: Double) {
+    func updateItem(item: Item, title: String, quantity: Double?) {
         item.title = title
         item.quantity = quantity
         FavItem.addItem(title: title, inManagerObjectContext: moc)

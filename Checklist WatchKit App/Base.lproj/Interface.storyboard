@@ -95,7 +95,6 @@
                         <group width="1" alignment="left" id="BWy-cB-4EK">
                             <items>
                                 <label alignment="left" text="1" id="KIS-DF-CsB"/>
-                                <label alignment="left" text="x" id="by6-Zx-owF"/>
                                 <label alignment="left" text="New Item Title" numberOfLines="2" minimumScaleFactor="0.50000000000000011" id="udW-SO-eO6">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
@@ -106,7 +105,7 @@
                                 <action selector="editTitle" destination="ame-D4-xXF" id="N86-D9-54E"/>
                             </connections>
                         </button>
-                        <slider width="1" alignment="left" value="1" maximum="10" steps="10" id="v6T-j1-bvP">
+                        <slider width="1" alignment="left" maximum="10" steps="10" id="v6T-j1-bvP">
                             <connections>
                                 <action selector="stepper:" destination="ame-D4-xXF" id="EnM-nT-GcA"/>
                             </connections>

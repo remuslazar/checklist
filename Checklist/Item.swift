@@ -13,7 +13,7 @@ import CoreData
 class Item: NSManagedObject {
 
     @NSManaged var title: String
-    @NSManaged var quantity: NSNumber
+    @NSManaged var quantity: NSNumber?
     @NSManaged var purchased: Bool
     @NSManaged var list: List
     @NSManaged var timestamp: NSDate

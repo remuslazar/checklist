@@ -37,7 +37,7 @@ class ItemsInterfaceController: WKInterfaceController {
     private func configureCellAtIndex(index: Int, item: Item) {
         if let cell = table.rowControllerAtIndex(index) as? ItemRowType {
             cell.titleLabel.setText(item.title)
-            cell.quantityLabel.setText(NSNumberFormatter().stringFromNumber(item.quantity))
+            cell.quantityLabel.setText(item.quantity != nil ? NSNumberFormatter().stringFromNumber(item.quantity!) : nil)
             cell.titleLabel.setAttributedText(NSAttributedString(string: item.title, attributes: [
                 NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
                 NSStrikethroughStyleAttributeName: item.purchased,

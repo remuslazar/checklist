@@ -38,7 +38,7 @@ class ItemsTableViewController: UITableViewController {
     
     private func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let item = list.items[indexPath.row] as? Item {
-            cell.detailTextLabel?.text = NSNumberFormatter().stringFromNumber(item.quantity)
+            cell.detailTextLabel?.text = item.quantity != nil ? NSNumberFormatter().stringFromNumber(item.quantity!) : nil
             cell.textLabel?.attributedText = NSAttributedString(string: item.title, attributes: [
                 NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
                 NSStrikethroughStyleAttributeName: item.purchased,
