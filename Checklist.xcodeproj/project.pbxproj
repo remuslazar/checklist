@@ -28,6 +28,7 @@
 		D86F579F1B512EE900AD7A55 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299011B4DD12D0037B00B /* List.swift */; };
 		D86F57A01B512F0100AD7A55 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89299071B4E5E4C0037B00B /* Item.swift */; };
 		D86F57A21B51385C00AD7A55 /* ItemRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F57A11B51385C00AD7A55 /* ItemRowType.swift */; };
+		D86F57A41B51DAC800AD7A55 /* AddNewItemInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F57A31B51DAC800AD7A55 /* AddNewItemInterfaceController.swift */; };
 		D89298D31B4C22CE0037B00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89298D21B4C22CE0037B00B /* AppDelegate.swift */; };
 		D89298D61B4C22CE0037B00B /* Checklist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D89298D41B4C22CE0037B00B /* Checklist.xcdatamodeld */; };
 		D89298DB1B4C22CE0037B00B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D89298D91B4C22CE0037B00B /* Main.storyboard */; };
@@ -134,6 +135,7 @@
 		D86F57961B511F0100AD7A55 /* MainRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRowType.swift; sourceTree = "<group>"; };
 		D86F57981B51234200AD7A55 /* ItemsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsInterfaceController.swift; sourceTree = "<group>"; };
 		D86F57A11B51385C00AD7A55 /* ItemRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRowType.swift; sourceTree = "<group>"; };
+		D86F57A31B51DAC800AD7A55 /* AddNewItemInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemInterfaceController.swift; sourceTree = "<group>"; };
 		D89298CD1B4C22CE0037B00B /* Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D89298D11B4C22CE0037B00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D89298D21B4C22CE0037B00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				D86F57531B4F28C700AD7A55 /* Images.xcassets */,
 				D86F574C1B4F28C700AD7A55 /* Supporting Files */,
 				D86F57981B51234200AD7A55 /* ItemsInterfaceController.swift */,
+				D86F57A31B51DAC800AD7A55 /* AddNewItemInterfaceController.swift */,
 			);
 			path = "Checklist WatchKit Extension";
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				D86F57971B511F0100AD7A55 /* MainRowType.swift in Sources */,
 				D86F57A01B512F0100AD7A55 /* Item.swift in Sources */,
 				D86F57A21B51385C00AD7A55 /* ItemRowType.swift in Sources */,
+				D86F57A41B51DAC800AD7A55 /* AddNewItemInterfaceController.swift in Sources */,
 				D86F57501B4F28C700AD7A55 /* InterfaceController.swift in Sources */,
 				D86F579F1B512EE900AD7A55 /* List.swift in Sources */,
 			);

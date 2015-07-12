@@ -14,6 +14,8 @@ import CoreData
 
 class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDelegate {
 
+    var firstLaunch = true
+    
     @IBOutlet weak var table: WKInterfaceTable!
     
     let data = DataAccess()
@@ -21,7 +23,6 @@ class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDele
     lazy var controller: NSFetchedResultsController = {
         let request = NSFetchRequest(entityName: "List")
         request.sortDescriptors = [ NSSortDescriptor(key: "timestamp", ascending: false)]
-        
         let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.data.managedObjectContext!,
             sectionNameKeyPath: nil, cacheName: nil)
         return controller
@@ -30,7 +31,6 @@ class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDele
     private func reloadTable() {
         let rowCount = controller.sections!.first!.numberOfObjects
         table.setNumberOfRows(rowCount, withRowType: "Lists")
-
         for var i=0; i<table.numberOfRows; i++ {
             let row = table.rowControllerAtIndex(i) as! MainRowType
             let list = controller.objectAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as! List
@@ -39,29 +39,26 @@ class InterfaceController: WKInterfaceController, NSFetchedResultsControllerDele
         }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        println("will change content")
-    }
-    
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        println("did change content")
         reloadTable()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        println("controller did change object")
-    }
-    
     override func awakeWithContext(context: AnyObject?) {
-        println("awake with content")
         super.awakeWithContext(context)
         controller.delegate = self
         controller.performFetch(nil)
+        
+        if (firstLaunch) {
+            firstLaunch = false
+            if let count = controller.sections?.first?.numberOfObjects where count == 1,
+                let list = controller.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as? List {
+                    pushControllerWithName("Items", context: list)
+            }
+        }
     }
     
     override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
         if let list = controller.objectAtIndexPath(NSIndexPath(forRow: rowIndex, inSection: 0)) as? List {
-            println("segue")
             return list
         }
         return nil

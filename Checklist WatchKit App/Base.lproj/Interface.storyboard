@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Lists-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Checklist_WatchKit_App" customModuleProvider="target">
+                <controller title="Lists" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Checklist_WatchKit_App" customModuleProvider="target">
                     <items>
                         <table alignment="left" id="N5s-xI-cKF">
                             <items>
@@ -35,18 +35,18 @@
             </objects>
             <point key="canvasLocation" x="220" y="346"/>
         </scene>
-        <!--Items Interface Controller-->
+        <!--Items-->
         <scene sceneID="sGy-h8-5wg">
             <objects>
-                <controller id="bU3-uA-F01" customClass="ItemsInterfaceController" customModule="Checklist_WatchKit_Extension">
+                <controller identifier="Items" id="bU3-uA-F01" customClass="ItemsInterfaceController" customModule="Checklist_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="tc5-LN-TDl">
                             <items>
                                 <tableRow identifier="Items" id="JuX-AB-9Et" customClass="ItemRowType" customModule="Checklist_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="DMb-eI-GY5">
                                         <items>
-                                            <label alignment="left" verticalAlignment="center" text="Label" id="cJ5-O9-2f4"/>
-                                            <label alignment="right" verticalAlignment="center" text="Label" id="Ohh-D8-ERh"/>
+                                            <label alignment="left" verticalAlignment="center" text="Item Title" id="cJ5-O9-2f4"/>
+                                            <label alignment="right" verticalAlignment="center" text="11" id="Ohh-D8-ERh"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -57,12 +57,66 @@
                             </items>
                         </table>
                     </items>
+                    <menu key="menu" id="tay-MV-pUo">
+                        <items>
+                            <menuItem title="Add Item" icon="add" id="lYb-p2-tre">
+                                <connections>
+                                    <action selector="addNew" destination="bU3-uA-F01" id="vDj-Ww-0nY"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Delete last item" icon="trash" id="Gnh-tM-uTJ">
+                                <connections>
+                                    <action selector="deleteLast" destination="bU3-uA-F01" id="QpE-3c-Uga"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="table" destination="tc5-LN-TDl" id="2rq-7V-SIi"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="473" y="346"/>
+            <point key="canvasLocation" x="436" y="346"/>
+        </scene>
+        <!--Add New-->
+        <scene sceneID="Msg-9j-EjK">
+            <objects>
+                <controller identifier="Add New" id="ame-D4-xXF" customClass="AddNewItemInterfaceController" customModule="Checklist_WatchKit_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="BWy-cB-4EK">
+                            <items>
+                                <label alignment="left" text="1" id="KIS-DF-CsB"/>
+                                <label alignment="left" text="x" id="by6-Zx-owF"/>
+                                <label alignment="left" text="New Item Title" numberOfLines="2" minimumScaleFactor="0.50000000000000011" id="udW-SO-eO6">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Edit" id="AX8-Jk-1AZ">
+                            <connections>
+                                <action selector="editTitle" destination="ame-D4-xXF" id="N86-D9-54E"/>
+                            </connections>
+                        </button>
+                        <slider width="1" alignment="left" value="1" maximum="10" steps="10" id="v6T-j1-bvP">
+                            <connections>
+                                <action selector="stepper:" destination="ame-D4-xXF" id="EnM-nT-GcA"/>
+                            </connections>
+                        </slider>
+                        <separator alignment="left" id="Mpq-nD-bsY"/>
+                        <button width="1" alignment="left" title="Add Item" id="UTR-IY-wrP">
+                            <color key="backgroundColor" red="0.13333334028720856" green="0.54509806632995605" blue="0.13333334028720856" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="add" destination="ame-D4-xXF" id="Fq7-xD-gMr"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="newItemTitleLAbel" destination="udW-SO-eO6" id="nRb-IM-eXT"/>
+                        <outlet property="quantityLabel" destination="KIS-DF-CsB" id="f5q-Dl-nG1"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="646" y="346"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

@@ -20,7 +20,7 @@ public class DataAccess: NSObject {
     
     lazy var sharedDocumentsDirectory: NSURL = {
         if let containerPath = NSFileManager().containerURLForSecurityApplicationGroupIdentifier("group.checklist.Documents")?.path {
-            println("container path: \(containerPath)")
+//            println("container path: \(containerPath)")
             return NSURL.fileURLWithPath(containerPath)!
         }
         abort()
