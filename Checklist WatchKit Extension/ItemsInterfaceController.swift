@@ -73,4 +73,12 @@ class ItemsInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
+    @IBAction func reload() {
+        let id = list.objectID
+        let moc = Checklist().moc
+        moc.reset()
+        list = moc.objectWithID(id) as! List
+        reloadTable()
+    }
+    
 }

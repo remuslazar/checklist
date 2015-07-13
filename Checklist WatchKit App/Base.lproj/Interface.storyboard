@@ -78,6 +78,11 @@
                                     <action selector="deleteLast" destination="bU3-uA-F01" id="QpE-3c-Uga"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Reload" icon="repeat" id="N1Q-vk-G6K">
+                                <connections>
+                                    <action selector="reload" destination="bU3-uA-F01" id="zbx-5F-maV"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                     <connections>
