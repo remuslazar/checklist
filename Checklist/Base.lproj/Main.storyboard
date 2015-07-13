@@ -63,13 +63,6 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khZ-TR-hQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Wig-D4-DsE">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem systemItem="add" id="PGS-Lh-EHS"/>
-                    </items>
-                </toolbar>
             </objects>
             <point key="canvasLocation" x="2829" y="461"/>
         </scene>
@@ -81,6 +74,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="D7I-uw-dRW">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem systemItem="add" id="ibN-Kq-lu0">
+                                    <connections>
+                                        <action selector="addAction:" destination="q4l-A3-Y6A" id="bnR-gV-0fO"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" textLabel="B64-3r-r31" detailTextLabel="fSj-7R-XYi" style="IBUITableViewCellStyleValue1" id="F4l-x6-Clf">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -111,13 +115,7 @@
                             <outlet property="delegate" destination="q4l-A3-Y6A" id="oCB-lB-F1C"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lists" id="OjW-pI-kcz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2vt-rz-6d9">
-                            <connections>
-                                <action selector="addAction:" destination="q4l-A3-Y6A" id="8aF-R7-sLa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Lists" id="OjW-pI-kcz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9K-hM-OGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

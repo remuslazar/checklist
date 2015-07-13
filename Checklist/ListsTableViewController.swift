@@ -37,7 +37,7 @@ class ListsTableViewController: CoreDataTableViewController {
             NSSortDescriptor(key: "timestamp", ascending: false)
         ]
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
