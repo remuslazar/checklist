@@ -67,6 +67,8 @@ class NewItemViewController: UIViewController, FavItemsTableDelegate, UITextFiel
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        save()
+        navigationController?.popViewControllerAnimated(true)
         return true
     }
     
