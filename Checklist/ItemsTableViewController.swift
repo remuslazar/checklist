@@ -32,6 +32,10 @@ class ItemsTableViewController: UITableViewController {
     // MARK: - Outlets
     
     @IBAction func refresh(sender: UIRefreshControl) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let id = list.objectID
+        appDelegate.managedObjectContext?.reset()
+        list = appDelegate.managedObjectContext?.objectWithID(id) as! List
         tableView.reloadData()
         sender.endRefreshing()
     }
